@@ -84,11 +84,19 @@ class App(tk.Tk):
         # --- Widgets de Controle ---
         ttk.Label(self.control_frame, text="Configurações", style="Title.TLabel").pack(pady=(0, 20), anchor="w")
         
-        ttk.Label(self.control_frame, text="Escolha um time:").pack(anchor="w")
-        teams = sorted(self.player_data['club_name'].unique())
-        self.team_var = tk.StringVar(value=teams[teams.index("Paris Saint-Germain")])
-        self.team_combo = ttk.Combobox(self.control_frame, textvariable=self.team_var, values=teams, state="readonly")
+        ttk.Label(self.control_frame, text="Pesquise e escolha um time:").pack(anchor="w")
+        
+        # Armazena a lista completa de times para a filtragem
+        self.all_teams = sorted(self.player_data['club_name'].unique())
+        self.team_var = tk.StringVar()
+        
+        # Combobox agora é editável para permitir a busca
+        self.team_combo = ttk.Combobox(self.control_frame, textvariable=self.team_var, values=self.all_teams)
         self.team_combo.pack(fill="x", pady=(5, 20))
+        self.team_combo.set("Paris Saint-Germain") # Define um valor inicial
+        
+        # Associa o evento de digitação à função de filtragem
+        self.team_combo.bind('<KeyRelease>', self.filter_teams)
         
         ttk.Label(self.control_frame, text="Tamanho da População:").pack(anchor="w")
         self.pop_size_var = tk.IntVar(value=100)
@@ -126,9 +134,31 @@ class App(tk.Tk):
             self.field_image_pil = None
         self.field_canvas.bind("<Configure>", lambda e: self.draw_pitch())
 
+    def filter_teams(self, event):
+        """
+        Filtra a lista de times no Combobox com base no que o usuário digita.
+        Esta função é chamada a cada tecla liberada.
+        """
+        typed_text = self.team_var.get()
+        
+        if not typed_text:
+            # Se o campo estiver vazio, mostra a lista completa
+            filtered_list = self.all_teams
+        else:
+            # Filtra a lista de times que começam com o texto digitado (sem diferenciar maiúsculas/minúsculas)
+            filtered_list = [team for team in self.all_teams if team.lower().startswith(typed_text.lower())]
+        
+        # Atualiza os valores exibidos no dropdown do Combobox
+        self.team_combo['values'] = filtered_list
+
     def start_optimization(self):
         """Inicia a thread do algoritmo genético."""
-        roster_df = self.player_data[self.player_data['club_name'] == self.team_var.get()]
+        team_name = self.team_var.get()
+        if team_name not in self.all_teams:
+            messagebox.showerror("Erro", f"Time '{team_name}' não encontrado na lista. Por favor, selecione um time válido.")
+            return
+
+        roster_df = self.player_data[self.player_data['club_name'] == team_name]
         if len(roster_df) < 11:
             messagebox.showerror("Erro", "Elenco com menos de 11 jogadores.")
             return
