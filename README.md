@@ -34,8 +34,8 @@ Para rodar a aplicação, siga os passos abaixo:
 
 **Pré-requisitos:**
 * Python 3.x instalado.
-* O arquivo de dados `players_22.csv` na mesma pasta do projeto.
-* Uma imagem de campo de futebol salva como `soccer_field.png` na mesma pasta.
+* O arquivo de dados `players_22.csv`, que pode ser baixado do Kaggle: [FIFA 22 complete player dataset](https://www.kaggle.com/datasets/stefanoleone992/fifa-22-complete-player-dataset).
+* Uma imagem de campo de futebol salva como `soccer_field.png` na mesma pasta do projeto.
 
 **Passos:**
 1.  Clone este repositório para a sua máquina local.
