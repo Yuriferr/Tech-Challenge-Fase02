@@ -6,7 +6,7 @@ Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação e
 
 O desafio consiste em, a partir de um elenco completo de um time, determinar a melhor combinação possível entre:
 1.  A **formação tática** a ser utilizada (ex: 4-4-2, 4-3-3, etc.).
-2.  A **escalação de 11 jogadores** para preencher as posições dessa formação.
+2.  A **escalação de 11 jogadores** com a habilidade mais adequada para preencher as posições dessa formação.
 
 O objetivo principal é **maximizar a "Pontuação de Fitness"** da equipe, uma métrica que representa a força e a coerência tática do time. Um critério de sucesso é gerar escalações que sejam não apenas fortes individualmente, mas que também respeitem a especialidade de cada jogador, evitando improvisações que prejudiquem o desempenho coletivo.
 
@@ -16,7 +16,8 @@ A solução foi implementada em Python, utilizando a biblioteca `Tkinter` para a
 
 * **Representação da Solução (Genoma):** Cada solução candidata (um "indivíduo") é representada por um dicionário Python contendo a formação tática e uma lista com os 11 jogadores escalados.
 
-* **Função de Fitness:** O "cérebro" do algoritmo. Ela avalia a qualidade de cada time calculando a soma das pontuações efetivas dos jogadores. A pontuação efetiva é o `overall` do jogador multiplicado por um fator de aptidão posicional, que penaliza fortemente jogadores fora de posição.
+* **Função de Fitness:** Ela avalia a qualidade de cada time calculando a soma das pontuações efetivas dos jogadores. A pontuação efetiva é o `overall` do jogador multiplicado por um fator de aptidão posicional, que penaliza fortemente jogadores fora de posição.
+O `overall` no FIFA refere-se à classificação geral de um jogador, um número que indica a habilidade e o desempenho do jogador no jogo. Essa pontuação é calculada com base em várias estatísticas e atributos, como velocidade, chute, passe, drible, defesa e físico. Quanto maior o overall, mais forte e eficiente o jogador será no jogo.
 
 * **Método de Inicialização:** A população inicial é gerada de forma totalmente aleatória, criando diversas combinações de táticas e jogadores para garantir uma ampla exploração do espaço de busca.
 
