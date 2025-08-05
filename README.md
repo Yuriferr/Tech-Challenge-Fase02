@@ -1,3 +1,5 @@
+![Capa do Projeto](Capa.png)
+
 # Tech Challenge - Fase 2: Otimizador de Times com Algoritmos Genéticos
 
 Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação em "IA para Devs". O objetivo é utilizar Algoritmos Genéticos (AG) para resolver um problema complexo de otimização: a escalação ideal de um time de futebol.
