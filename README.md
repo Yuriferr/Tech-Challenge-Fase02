@@ -10,6 +10,8 @@ O desafio consiste em, a partir de um elenco completo de um time, determinar a m
 
 O objetivo principal é **maximizar a "Pontuação de Fitness"** da equipe, uma métrica que representa a força e a coerência tática do time. Um critério de sucesso é gerar escalações que sejam não apenas fortes individualmente, mas que também respeitem a especialidade de cada jogador, evitando improvisações que prejudiquem o desempenho coletivo.
 
+Foi utilizado no projeto a base do FIFA22 baixada do Kaggle. Link de referência da base: [FIFA 22 complete player dataset](https://www.kaggle.com/datasets/stefanoleone992/fifa-22-complete-player-dataset).
+
 ## 2. Abordagem e Implementação do Algoritmo
 
 A solução foi implementada em Python, utilizando a biblioteca `Tkinter` para a interface gráfica e `pandas` para a manipulação de dados. A estrutura do AG foi organizada da seguinte forma:
